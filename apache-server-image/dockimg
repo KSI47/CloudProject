@@ -1,0 +1,24 @@
+#!/bin/bash 
+
+#/bin/dockimg
+
+download="RUN git clone" 
+dockerfiles_path=/home/khaled/Docker-images/apache-server-image
+cp $dockerfiles_path/Dockerfile_base $dockerfiles_path/Dockerfile
+	case "$1" in 
+	-l) echo $donwload $2 >> $dockerfiles_path/Dockerfile;;
+	-i) image="$2";;
+	esac 
+	 case "$3" in
+        -l) echo $download $4 >> $dockerfiles_path/Dockerfile;;
+        -i) image="$4";;
+        esac
+cd $dockerfiles_path
+mkdir ./$image
+mv ./Dockerfile ./$image/
+cd ./$image
+sudo docker build -t $image .
+
+
+
+
